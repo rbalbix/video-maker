@@ -63,7 +63,7 @@ typings/
 .next
 
 # credentials
-credentials/*.json
+#credentials/*.json
 
 content.json
 
