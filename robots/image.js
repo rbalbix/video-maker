@@ -32,19 +32,25 @@ async function robot() {
   }
 
   async function fetchGoogleAndReturnImagesLinks(query) {
-    const response = await customSearch.cse.list({
-      auth: googleSearchCredentials.apiKey,
-      cx: googleSearchCredentials.searchEngineId,
-      q: query,
-      searchType: 'image',
-      num: 2
-    })
+    
+    try{
+      const response = await customSearch.cse.list({
+        auth: googleSearchCredentials.apiKey,
+        cx: googleSearchCredentials.searchEngineId,
+        q: query,
+        searchType: 'image',
+        num: 2
+      })
 
-    const imagesUrl = response.data.items.map((item) => {
-      return item.link
-    })
+      const imagesUrl = response.data.items.map((item) => {
+        return item.link
+      })
 
-    return imagesUrl
+      return imagesUrl
+    }
+    catch(error){
+      console.log(`> [image-robot] ${error}`)
+    }
   }
 
   async function downloadAllImages(content) {
